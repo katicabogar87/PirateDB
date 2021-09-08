@@ -15,5 +15,7 @@ public class SevenSeas {
         BattleField.winnerShip = BattleField.phaseOne();
         BattleField.winnerShip = BattleField.phaseTwo();
 
+
+        System.out.println("THE END");
     }
 }
