@@ -1,1 +1,0 @@
-SELECT * FROM pirate_db.ship;
