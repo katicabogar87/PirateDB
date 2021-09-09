@@ -1,11 +1,16 @@
 import module.BattleField;
 import module.Tortuga;
+import util.DBEngine;
 import util.Reader;
 
 public class SevenSeas {
     public static void main(String[] args) {
 
-        Reader.readFiles();
+        DBEngine engine = new DBEngine();
+
+        System.out.println(engine.isConnected());
+
+       /* Reader.readFiles();
 
         System.out.println("done");
 
@@ -16,6 +21,6 @@ public class SevenSeas {
         BattleField.winnerShip = BattleField.phaseTwo();
 
 
-        System.out.println("THE END");
+        System.out.println("THE END");*/
     }
 }
