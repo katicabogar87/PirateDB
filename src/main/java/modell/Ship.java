@@ -9,6 +9,7 @@ import java.util.List;
 
 public class Ship {
 
+    private long id;
     public String name;
     public String graphic;
     private int numberOfCannons;            //former attackPower
@@ -49,6 +50,18 @@ public class Ship {
         int randomGraphic =  (int) (Math.random()*10);
         if (randomGraphic%2==0){graphic=shipGraphic1;}
         else {graphic=shipGraphic2;}
+    }
+
+    public Ship(long id, String name, int graphicID, int numberOfCannons, int shipCondition) {
+        this.id = id;
+        this.name = name;
+        if (graphicID ==1){
+            graphic = shipGraphic1;
+        }else if(graphicID ==2){
+            graphic = shipGraphic2;
+        } else {graphic = String.valueOf(graphicID);}
+        this.numberOfCannons =numberOfCannons;
+        this.condition = shipCondition;
     }
 
     public double calcShipStrength() {
@@ -230,5 +243,14 @@ public class Ship {
             sumStrength+= pirate.getHealth();
         }
         return sumStrength/crew.size();
+    }
+
+    @Override
+    public String toString() {
+        return id + " - " +
+                name + ", " +"\n" +
+                graphic  +
+                "number of cannons: " + numberOfCannons + " " +
+                "condition: " + condition;
     }
 }

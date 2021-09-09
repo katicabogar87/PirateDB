@@ -27,8 +27,8 @@ rum_owned INT UNSIGNED NOT NULL,
 FOREIGN KEY (pirate_id) REFERENCES pirate(id)
 );
 
-INSERT INTO captain (rum_owned) VALUES  (
-	15);
+INSERT INTO captain (rum_owned, pirate_id) VALUES  (
+	15, 1);
 
 DROP TABLE  IF EXISTS ship;
 CREATE TABLE ship(

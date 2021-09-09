@@ -8,7 +8,10 @@ public class SevenSeas {
 
         DBEngine engine = new DBEngine();
 
-        System.out.println(engine.isConnected());
+        System.out.println("connection: "+engine.isConnected());
+
+        System.out.println(engine.listAllShips());
+
 
        /* Reader.readFiles();
 
