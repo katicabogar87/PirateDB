@@ -1,3 +1,4 @@
+import modell.Ship;
 import module.BattleField;
 import module.Tortuga;
 import util.DBEngine;
@@ -10,24 +11,27 @@ public class SevenSeas {
 
         System.out.println("connection: "+engine.isConnected());
 
-        System.out.println(engine.listAllShips());
-        System.out.println(engine.listAllPirates());
-        System.out.println(engine.listAllCaptains());
-        System.out.println(engine.listAllPiratesNoCaptains());
-        System.out.println(engine.findShipsCrew(1));
-
-
-       /* Reader.readFiles();
+       Reader.readFiles();
 
         System.out.println("done");
 
         Tortuga.setUpShip();
         Tortuga.setUpShip();
 
-        BattleField.winnerShip = BattleField.phaseOne();
-        BattleField.winnerShip = BattleField.phaseTwo();
+        for (Ship ship: BattleField.shipsInBattle) {
+            engine.addShipToDB(ship);
+        }
+
+        System.out.println("_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
+        System.out.println(engine.listAllShips());
+        System.out.println("_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
 
 
-        System.out.println("THE END");*/
+
+       /* BattleField.winnerShip = BattleField.phaseOne();
+        BattleField.winnerShip = BattleField.phaseTwo();*/
+
+
+        System.out.println("THE END");
     }
 }

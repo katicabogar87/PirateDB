@@ -245,6 +245,22 @@ public class Ship {
         return sumStrength/crew.size();
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getGraphic() {
+        return graphic;
+    }
+
+    public void setGraphic(String graphic) {
+        this.graphic = graphic;
+    }
+
     @Override
     public String toString() {
         return id + " - " +

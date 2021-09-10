@@ -266,4 +266,36 @@ public class DBEngine {
         return crew;
     }
 
+    public boolean addShipToDB(Ship ship) {
+
+        String query = "INSERT INTO ship (id, name, graphic_id, number_of_cannons, ship_condition) VALUES (?, ?, ?, ?, ?);";
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setLong(1, ship.getId());
+            ps.setString(2, ship.getName());
+            int graphicID;
+            if (ship.getGraphic().equals(Ship.shipGraphic1)) {
+                graphicID=1;
+            }else if (ship.getGraphic().equals(Ship.shipGraphic2)){
+                graphicID=2;
+            }else {graphicID = 0;}
+            ps.setInt(3, graphicID);
+            ps.setInt(4, ship.getNumberOfCannons());
+            ps.setInt(5, ship.getCondition());
+
+
+            ps.executeUpdate();
+            ps.close();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+
+
 }
