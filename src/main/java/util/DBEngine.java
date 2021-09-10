@@ -137,7 +137,40 @@ public class DBEngine {
         return ship;
     }
 
+    private Pirate findPirateByID(int pirateID) {
 
+
+        String query = "SELECT * FROM  pirate  WHERE id = ?";
+
+        Pirate pirate = null;
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, pirateID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                long id = resultSet.getLong("id");        // resultSet.getLong(1);
+                String name = resultSet.getString("name");
+                int strength = resultSet.getInt("strength");
+                int health = resultSet.getInt("health");
+                String drunkLevelFromDB = resultSet.getString("drunk_level").toUpperCase();
+                DrunkLevel drunkLevel = DrunkLevel.valueOf(drunkLevelFromDB);
+                int shipID = resultSet.getInt("ship_id");
+                Ship ship = findShipByID(shipID);
+
+
+                pirate = new Pirate(id, name, strength, health, drunkLevel, ship);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return pirate;
+    }
 
   public List<Captain> listAllCaptains() {
       String query = "SELECT*FROM pirate JOIN captain ON pirate.id = captain.pirate_id;";
@@ -208,6 +241,29 @@ public class DBEngine {
         }
 
         return piratesInDB;
+    }
+       // dragons element
+       // ships crew
+
+    public List<Pirate> findShipsCrew(long shipId) {
+        String query = "SELECT * FROM pirate WHERE ship_id = ?";
+
+        List<Pirate> crew = new ArrayList<>();
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setLong(1, shipId);
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                Pirate pirate = findPirateByID(id);
+                crew.add(pirate);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return crew;
     }
 
 }
