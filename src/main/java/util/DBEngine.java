@@ -1,5 +1,6 @@
 package util;
 
+import modell.Captain;
 import modell.DrunkLevel;
 import modell.Pirate;
 import modell.Ship;
@@ -135,4 +136,43 @@ public class DBEngine {
 
         return ship;
     }
+
+
+
+  public List<Captain> listAllCaptains() {
+      String query = "SELECT*FROM pirate JOIN captain ON pirate.id = captain.pirate_id;";
+
+
+      List<Captain> captainsInDB = new ArrayList<>();
+
+      try {
+          Statement statement = connection.createStatement();
+          ResultSet resultSet = statement.executeQuery(query);
+
+          while (resultSet.next()) {
+              // getXXX("column_name_in_DB")
+              long id = resultSet.getLong("captain.id");        // resultSet.getLong(1);
+              String name = resultSet.getString("name");
+              int strength = resultSet.getInt("strength");
+              int health = resultSet.getInt("health");
+              String drunkLevelFromDB = resultSet.getString("drunk_level").toUpperCase();
+              DrunkLevel drunkLevel = DrunkLevel.valueOf(drunkLevelFromDB);
+              int shipID = resultSet.getInt("ship_id");
+              Ship ship = findShipByID(shipID);
+              int rumOwned = resultSet.getInt("rum_owned");
+
+
+              Captain captain = new Captain(id, name, strength, health, drunkLevel, ship, rumOwned);
+
+              captainsInDB.add(captain);
+          }
+
+      } catch (SQLException e) {
+          System.out.println("???");
+          e.printStackTrace();
+      }
+
+      return captainsInDB;
+  }
+
 }

@@ -12,6 +12,7 @@ public class SevenSeas {
 
         System.out.println(engine.listAllShips());
         System.out.println(engine.listAllPirates());
+        System.out.println(engine.listAllCaptains());
 
 
        /* Reader.readFiles();

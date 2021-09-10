@@ -120,6 +120,10 @@ public class Pirate {
         }
     }
 
+    public long getId() {
+        return id;
+    }
+
     public Ship getShip() {
         return ship;
     }
@@ -135,6 +139,7 @@ public class Pirate {
                 "strength: " + strength + " " +
                 "health: " + health  + " " +
                 "drunkLevel: " + drunkLevel +"\n"+
-                "member of "+ship.getName()+"\'s crew" +"\n";
+                "member of "+ship.getName()+"\'s crew" +
+                "\n";
     }
 }

@@ -19,6 +19,11 @@ public class Captain extends Pirate {
         this.rumOwned = rumOwned;
     }
 
+    public Captain(long id, String name, int strength, int health, DrunkLevel drunkLevel, Ship ship, int rumOwned) {
+        super(id, name, strength, health, drunkLevel, ship);
+        this.rumOwned = rumOwned;
+    }
+
     public boolean decrementRum(int amount) {
         if (amount <= rumOwned) {
             rumOwned -= amount;
@@ -112,5 +117,16 @@ public class Captain extends Pirate {
 
     public int getRumOwned() {
         return rumOwned;
+    }
+
+    @Override
+    public String toString() {
+        return super.getId() + " - " +
+                super.getName() + ", " +"\n" +
+                "strength: " + super.getStrength() + " " +
+                "health: " + super.getHealth() + " " +
+                "drunkLevel: " + super.getDrunkLevel() +"\n"+
+                "Captain of "+super.getShip().getName()+
+                "\n";
     }
 }
