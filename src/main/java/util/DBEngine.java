@@ -175,4 +175,39 @@ public class DBEngine {
       return captainsInDB;
   }
 
+    public List<Pirate> listAllPiratesNoCaptains() {
+        String query = "SELECT * FROM pirate where id != (SELECT pirate.id FROM pirate JOIN captain ON pirate.id = captain.pirate_id);";
+
+
+        List<Pirate> piratesInDB = new ArrayList<>();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                // getXXX("column_name_in_DB")
+                long id = resultSet.getLong("id");        // resultSet.getLong(1);
+                String name = resultSet.getString("name");
+                int strength = resultSet.getInt("strength");
+                int health = resultSet.getInt("health");
+                String drunkLevelFromDB = resultSet.getString("drunk_level").toUpperCase();
+                DrunkLevel drunkLevel = DrunkLevel.valueOf(drunkLevelFromDB);
+                int shipID = resultSet.getInt("ship_id");
+                Ship ship = findShipByID(shipID);
+
+
+                Pirate pirate = new Pirate(id, name, strength, health, drunkLevel, ship);
+
+                piratesInDB.add(pirate);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("???");
+            e.printStackTrace();
+        }
+
+        return piratesInDB;
+    }
+
 }
