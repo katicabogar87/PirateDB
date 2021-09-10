@@ -139,7 +139,7 @@ public class Pirate {
                 "strength: " + strength + " " +
                 "health: " + health  + " " +
                 "drunkLevel: " + drunkLevel +"\n"+
-                "member of "+ship.getName()+"\'s crew" +
+              //  "member of "+ship.getName()+"\'s crew" + //TODO: ship is null!!! -WHY???
                 "\n";
     }
 }

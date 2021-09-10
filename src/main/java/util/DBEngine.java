@@ -296,6 +296,28 @@ public class DBEngine {
     }
 
 
+    public boolean addPirateToDB(Pirate pirate) {
 
+        String query = "INSERT INTO pirate (id, name, strength, health, drunk_level, ship_id) VALUES (?, ?, ?, ?, ?, ?);";
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setLong(1, pirate.getId());
+            ps.setString(2, pirate.getName());
+            ps.setInt(3, pirate.getStrength());
+            ps.setInt(4, pirate.getHealth());
+            ps.setInt(5, pirate.getDrunkLevel().ordinal()+1);
+            ps.setLong(6, pirate.getShip().getId());
+
+
+            ps.executeUpdate();
+            ps.close();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 }

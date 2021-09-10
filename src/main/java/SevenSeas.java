@@ -1,3 +1,4 @@
+import modell.Pirate;
 import modell.Ship;
 import module.BattleField;
 import module.Tortuga;
@@ -19,11 +20,15 @@ public class SevenSeas {
         Tortuga.setUpShip();
 
         for (Ship ship: BattleField.shipsInBattle) {
-            engine.addShipToDB(ship);
+            if(engine.addShipToDB(ship)){
+            for (Pirate pirate : ship.getCrew()) {
+                engine.addPirateToDB(pirate);
+            }}
         }
 
         System.out.println("_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
         System.out.println(engine.listAllShips());
+        System.out.println(engine.listAllPirates());
         System.out.println("_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
 
 
