@@ -43,3 +43,6 @@ ship_condition  INT UNSIGNED  NOT NULL
 INSERT INTO Ship (name, graphic_id, number_of_cannons, ship_condition) VALUES  (
 	"Ark of Joy", 1, 8, 100);
 
+-- SELECT*FROM pirate JOIN captain ON pirate.id = captain.pirate_id;
+
+-- SELECT * FROM pirate where id != (SELECT pirate.id FROM pirate JOIN captain ON pirate.id = captain.pirate_id);
