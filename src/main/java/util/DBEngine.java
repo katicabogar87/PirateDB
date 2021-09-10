@@ -107,6 +107,32 @@ public class DBEngine {
 
     private Ship findShipByID(int shipID) {
 
-        return null;
+
+        String query = "SELECT * FROM  ship  WHERE id = ?";
+
+        Ship ship = null;
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, shipID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                // getXXX("column_name_in_DB")
+                long id = resultSet.getLong("id");        // resultSet.getLong(1);
+                String name = resultSet.getString("name");
+                int graphic = resultSet.getInt("graphic_id");
+                int numberOfCannons = resultSet.getInt("number_of_cannons");
+                int shipCondition = resultSet.getInt("ship_condition");
+
+                ship = new Ship(id, name, graphic, numberOfCannons,shipCondition);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return ship;
     }
 }

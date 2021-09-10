@@ -127,4 +127,14 @@ public class Pirate {
     public void setShip(Ship ship) {
         this.ship = ship;
     }
+
+    @Override
+    public String toString() {
+        return id + " - " +
+                name + ", " +"\n" +
+                "strength: " + strength + " " +
+                "health: " + health  + " " +
+                "drunkLevel: " + drunkLevel +"\n"+
+                "member of "+ship.getName()+"\'s crew" +"\n";
+    }
 }
