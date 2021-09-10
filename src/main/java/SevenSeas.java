@@ -11,6 +11,7 @@ public class SevenSeas {
         System.out.println("connection: "+engine.isConnected());
 
         System.out.println(engine.listAllShips());
+        System.out.println(engine.listAllPirates());
 
 
        /* Reader.readFiles();

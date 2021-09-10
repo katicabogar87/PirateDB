@@ -4,6 +4,7 @@ import util.Generator;
 
 public class Pirate {
 
+    private long id;
     private String name;
     private int strength;   //  0 -> 10
     private static int maxStrength = 10;
@@ -24,6 +25,15 @@ public class Pirate {
     }
 
     public Pirate(String name, int strength, int health, DrunkLevel drunkLevel,  Ship ship) {
+        this.name = name;
+        this.strength = strength;
+        this.health = health;
+        this.drunkLevel = drunkLevel;
+        this.ship = ship;
+    }
+
+    public Pirate(long id, String name, int strength, int health, DrunkLevel drunkLevel, Ship ship) {
+        this.id = id;
         this.name = name;
         this.strength = strength;
         this.health = health;
