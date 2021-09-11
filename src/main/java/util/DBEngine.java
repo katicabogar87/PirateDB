@@ -316,8 +316,6 @@ public class DBEngine {
             ps.setInt(2, pirate.getStrength());
             ps.setInt(3, pirate.getHealth());
             ps.setInt(4, pirate.getDrunkLevel().ordinal()+1);
-            System.out.println(pirate.getShip());
-            System.out.println(pirate.getShip().getId());
             ps.setLong(5, pirate.getShip().getId());
 
 
@@ -325,7 +323,7 @@ public class DBEngine {
 
             ResultSet rs = ps.getGeneratedKeys();
             if(rs.next())
-                pirate.setId(rs.getInt(1));
+                pirate.setPirateId(rs.getInt(1));
 
             ps.close();
 
@@ -336,4 +334,28 @@ public class DBEngine {
         }
     }
 
+    //CAPTAIN
+    public boolean addCaptainToDB(Captain captain) {
+        addPirateToDB(captain);
+        String query = "INSERT INTO captain (pirate_id, rum_owned) VALUES (?, ?)";
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            // ps.setLong(1, pirate.getId());
+            ps.setLong(1, captain.getPirateId());
+            ps.setInt(2, captain.getRumOwned());
+
+            ps.executeUpdate();
+
+            ResultSet rs = ps.getGeneratedKeys();
+            if(rs.next())
+                captain.setCaptainId(rs.getLong(1));
+            ps.close();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

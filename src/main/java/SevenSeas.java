@@ -1,3 +1,4 @@
+import modell.Captain;
 import modell.Pirate;
 import modell.Ship;
 import module.BattleField;
@@ -21,8 +22,9 @@ public class SevenSeas {
 
         for (Ship ship: BattleField.shipsInBattle) {
             if(engine.addShipToDB(ship)){
-            for (Pirate pirate : ship.getCrew()) {
-                engine.addPirateToDB(pirate);
+                engine.addCaptainToDB((Captain) ship.getCrew().get(0));
+            for (int i = 1; i < ship.getCrew().size(); i++) {
+                engine.addPirateToDB(ship.getCrew().get(i));
             }}
         }
 
@@ -31,11 +33,8 @@ public class SevenSeas {
         System.out.println(engine.listAllPirates());
         System.out.println("_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
 
-
-
        /* BattleField.winnerShip = BattleField.phaseOne();
         BattleField.winnerShip = BattleField.phaseTwo();*/
-
 
         System.out.println("THE END");
     }

@@ -7,6 +7,8 @@ public class Captain extends Pirate {
     public int rumOwned;
     public static int minRumOwned = 50;
     public static int maxRumOwned = 100;
+    public long captainId;
+
 
 
     public Captain() {
@@ -121,12 +123,20 @@ public class Captain extends Pirate {
 
     @Override
     public String toString() {
-        return super.getId() + " - " +
+        return super.getPirateId() + " - " +
                 super.getName() + ", " +"\n" +
                 "strength: " + super.getStrength() + " " +
                 "health: " + super.getHealth() + " " +
                 "drunkLevel: " + super.getDrunkLevel() +"\n"+
                 "Captain of "+super.getShip().getName()+
                 "\n";
+    }
+
+    public long getCaptainId() {
+        return captainId;
+    }
+
+    public void setCaptainId(long captainId) {
+        this.captainId = captainId;
     }
 }

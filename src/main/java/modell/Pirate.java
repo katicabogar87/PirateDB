@@ -4,7 +4,7 @@ import util.Generator;
 
 public class Pirate {
 
-    private long id;
+    private long pirateId;
     private String name;
     private int strength;   //  0 -> 10
     private static int maxStrength = 10;
@@ -33,8 +33,8 @@ public class Pirate {
         this.ship = ship;
     }
 
-    public Pirate(long id, String name, int strength, int health, DrunkLevel drunkLevel, Ship ship) {
-        this.id = id;
+    public Pirate(long pirateId, String name, int strength, int health, DrunkLevel drunkLevel, Ship ship) {
+        this.pirateId = pirateId;
         this.name = name;
         this.strength = strength;
         this.health = health;
@@ -121,12 +121,12 @@ public class Pirate {
         }
     }
 
-    public long getId() {
-        return id;
+    public long getPirateId() {
+        return pirateId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setPirateId(long pirateId) {
+        this.pirateId = pirateId;
     }
 
     public Ship getShip() {
@@ -140,15 +140,15 @@ public class Pirate {
     @Override
     public String toString() {
         if (this.ship != null) {
-            return id + " - " +
+            return pirateId + " - " +
                     name + ", " + "\n" +
                     "strength: " + strength + " " +
                     "health: " + health + " " +
                     "drunkLevel: " + drunkLevel + "\n" +
-                    "member of "+ship.getName()+"\'s crew" + //TODO: ship is null!!! -WHY???
+                    "member of "+ship.getName()+"\'s crew" +
                     "\n";
         }
-        else{ return id + " - " +
+        else{ return pirateId + " - " +
                 name + ", " + "\n" +
                 "strength: " + strength + " " +
                 "health: " + health + " " +
