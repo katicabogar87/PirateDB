@@ -9,7 +9,7 @@ public class Printer {
 
         System.out.println(ship.getName());
         System.out.println();
-        System.out.println(ship.graphic);
+        System.out.println(ship.getGraphic());
         printCrew(ship);
 
     }
@@ -139,7 +139,7 @@ public class Printer {
 
     }
     public static void shipStatus(Ship ship){
-        System.out.println(ship.graphic);
+        System.out.println(ship.getGraphic());
         System.out.println(ship.getName()+"\' s status:");
         System.out.println("condition: "+ship.getCondition()+", manpower: "+ ship.getMenPower()+",\n" +
                 " average health: "+ship.getAvgHealth()+", average strength: "+ship.getAvgStrength());

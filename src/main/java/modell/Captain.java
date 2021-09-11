@@ -1,14 +1,20 @@
 package modell;
 
+import lombok.Getter;
+import lombok.Setter;
 import util.Printer;
 
 public class Captain extends Pirate {
 
+    @Getter
+    @Setter
+    public long captainId;
+
+    @Getter
+    @Setter
     public int rumOwned;
     public static int minRumOwned = 50;
     public static int maxRumOwned = 100;
-    public long captainId;
-
 
 
     public Captain() {
@@ -110,16 +116,6 @@ public class Captain extends Pirate {
         }
     }
 
-    public void setRumOwned(int rumOwned) {
-        this.rumOwned = rumOwned;
-        if(rumOwned == 0){
-            System.out.println(getName()+" has no rum left!!!");
-        }
-    }
-
-    public int getRumOwned() {
-        return rumOwned;
-    }
 
     @Override
     public String toString() {
@@ -132,11 +128,4 @@ public class Captain extends Pirate {
                 "\n";
     }
 
-    public long getCaptainId() {
-        return captainId;
-    }
-
-    public void setCaptainId(long captainId) {
-        this.captainId = captainId;
-    }
 }

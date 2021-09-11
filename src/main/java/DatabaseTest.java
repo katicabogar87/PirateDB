@@ -8,11 +8,11 @@ public class DatabaseTest {
 
             System.out.println("connection: "+engine.isConnected());
 
-            System.out.println(engine.listAllShips());
-            System.out.println(engine.listAllPirates());
-            System.out.println(engine.listAllCaptains());
-            System.out.println(engine.listAllPiratesNoCaptains());
-            System.out.println(engine.findShipsCrew(1));
+            System.out.println("ships: \n" + engine.listAllShips());
+            System.out.println("all pirates: \n" + engine.listAllPirates());
+            System.out.println("captains: \n" + engine.listAllCaptains());
+           // System.out.println("only pirates (no captains): \n" + engine.listAllPiratesNoCaptains());
+            System.out.println("ships' crew: \n" + engine.findShipsCrew(3));
 
 
 

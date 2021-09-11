@@ -1,5 +1,7 @@
 package modell;
 
+import lombok.Getter;
+import lombok.Setter;
 import module.BattleField;
 import util.Generator;
 import util.Printer;
@@ -9,15 +11,20 @@ import java.util.List;
 
 public class Ship {
 
+    @Getter @Setter
     private long id;
-    public String name;
-    public String graphic;
+    @Getter @Setter
+    private String name;
+    @Getter @Setter
+    private String graphic;
+    @Getter @Setter
     private int numberOfCannons;            //former attackPower
-    private static int maxNumberOfCannons = 12;
-    private static int minNumberOfCannons = 6;
+    private static final int maxNumberOfCannons = 12;
+    private static final int minNumberOfCannons = 6;
+    @Getter @Setter
     private int condition;
-    private static int maxCondition =100;
-    private static int minCondition =70;
+    private static final int maxCondition =100;
+    private static final int minCondition =70;
     public static String shipGraphic1 =
             "     ^  +~+~~\n" +
             "    ^   )`.).\n" +
@@ -38,7 +45,9 @@ public class Ship {
             "~~~~~~~~~~~~~~~~~~~~~~~~~~\n" ;
 
 
+    @Getter @Setter
     public List<Pirate> crew = new ArrayList<>();
+    @Getter @Setter
     public List<Pirate> crewLoss = new ArrayList<>();
 
 
@@ -130,14 +139,12 @@ public class Ship {
     public Captain createNewCaptain(){
         Pirate captainToBe = findStrongestPirate();
         Captain deceasedCaptain = (Captain) crew.get(0);
-        Captain newCaptain = new Captain(
-                                        "Captain " + captainToBe.getName(),
+        return new Captain(      "Captain " + captainToBe.getName(),
                                         captainToBe.getStrength(),
                                         captainToBe.getHealth(),
                                         captainToBe.getDrunkLevel(),
                                         captainToBe.getShip(),
                                         deceasedCaptain.getRumOwned());
-        return newCaptain;
     }
 
 
@@ -193,17 +200,7 @@ public class Ship {
         return crew.size();
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public int getCondition() {
-        return condition;
-    }
-
-    public void setCondition(int condition) {
-        this.condition = condition;
-    }
 
     public void decrementCondition(int amount) {
         if (amount < condition) {
@@ -219,15 +216,6 @@ public class Ship {
         }
     }
 
-    public int getNumberOfCannons() {
-        return numberOfCannons;
-    }
-
-    public List<Pirate> getCrew() {return crew; }
-
-    public List<Pirate> getCrewLoss() {
-        return crewLoss;
-    }
 
     public int getAvgHealth() {
         int sumHealth=0;
@@ -245,30 +233,13 @@ public class Ship {
         return sumStrength/crew.size();
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getGraphic() {
-        return graphic;
-    }
-
-    public void setGraphic(String graphic) {
-        this.graphic = graphic;
-    }
 
     @Override
     public String toString() {
-        if (this!=null){
-        return id + " - " +
+                return id + " - " +
                 name + ", " +"\n" +
                 graphic  +
                 "number of cannons: " + numberOfCannons + " " +
-                "condition: " + condition+"\n";}
-        else return "ship unknown";
+                "condition: " + condition+"\n";
     }
 }

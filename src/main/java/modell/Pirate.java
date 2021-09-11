@@ -1,19 +1,28 @@
 package modell;
 
+import lombok.Getter;
+import lombok.Setter;
 import util.Generator;
 
 public class Pirate {
 
+
+    @Getter @Setter
     private long pirateId;
+    @Getter @Setter
     private String name;
+    @Getter @Setter
     private int strength;   //  0 -> 10
-    private static int maxStrength = 10;
-    private static int minStrength = 5;
+    private static final int maxStrength = 10;
+    private static final int minStrength = 5;
+    @Getter
     private int health;     //  0 -> 10
-    private static int maxHealth = 10;
-    private static int minHealth = 5;
-    private static int fightThreshold = 40;
+    private static final int maxHealth = 10;
+    private static final int minHealth = 5;
+    private static final int fightThreshold = 40;
+    @Getter @Setter
     private DrunkLevel drunkLevel;  //0.1, 0.5, 1, 1.1, 1.2
+    @Getter @Setter
     private Ship ship;
 
     public Pirate() {
@@ -69,28 +78,17 @@ public class Pirate {
         }
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getStrength() {
-        return strength;
-    }
 
     public void halveStrength(){
         strength = strength/2;
     }
 
-    public int getHealth() {
-        return health;}
+
 
     public void setHealth(int health) {
         this.health = health;
         if(health==0){
+            System.out.println(name + " has died.");
             ship.crewLoss.add(this);
             ship.crew.remove(this);
         }
@@ -100,17 +98,9 @@ public class Pirate {
             if(amount< health){
                 health -= amount;}
             else{setHealth(0);
-                System.out.println(name + " has died.");
             }
     }
 
-    public DrunkLevel getDrunkLevel() {
-        return drunkLevel;
-    }
-
-    public void setDrunkLevel(DrunkLevel drunkLevel) {
-        this.drunkLevel = drunkLevel;
-    }
 
     public void incrementDrunkLevel(int rumAmount) {
           if (0 < rumAmount && rumAmount <= 2) {
@@ -121,25 +111,10 @@ public class Pirate {
         }
     }
 
-    public long getPirateId() {
-        return pirateId;
-    }
-
-    public void setPirateId(long pirateId) {
-        this.pirateId = pirateId;
-    }
-
-    public Ship getShip() {
-        return ship;
-    }
-
-    public void setShip(Ship ship) {
-        this.ship = ship;
-    }
 
     @Override
     public String toString() {
-        if (this.ship != null) {
+
             return pirateId + " - " +
                     name + ", " + "\n" +
                     "strength: " + strength + " " +
@@ -147,13 +122,6 @@ public class Pirate {
                     "drunkLevel: " + drunkLevel + "\n" +
                     "member of "+ship.getName()+"\'s crew" +
                     "\n";
-        }
-        else{ return pirateId + " - " +
-                name + ", " + "\n" +
-                "strength: " + strength + " " +
-                "health: " + health + " " +
-                "drunkLevel: " + drunkLevel + "\n" +
-                "ship unknown"+
-                "\n";}
+
     }
 }

@@ -42,7 +42,7 @@ public class BattleField {
         System.out.println("The two ships detect each other ...");
         System.out.println("From afar, they try to measure up their chances.");
         if(ship1.assessEnemy(ship2)){
-            System.out.println(ship1.getName()+"'s Captain decides to attack:");          ;
+            System.out.println(ship1.getName()+"'s Captain decides to attack:");
             return ship1;
         }else{
             System.out.println(ship1.getName()+"'s Captain decides to run make a for it.");
@@ -61,10 +61,8 @@ public class BattleField {
     }
 
     private static Ship cannonsFired(Ship attackerShip, Ship defenderShip) {
-        Ship winner=null;
+        Ship winner;
 
-        /*System.out.println(attackerShip.getName()+" has "+ attackerShip.shotsFired() + " shots.");
-        System.out.println(defenderShip.getName()+" has "+ defenderShip.shotsFired() + " shots.");*/
         System.out.println(attackerShip.getName()+" has "+ attackerShip.shotsFired() + " operable cannons onboard.");
         System.out.println(defenderShip.getName()+" has "+ defenderShip.shotsFired() + " operable cannons onboard.");
 
