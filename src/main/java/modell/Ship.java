@@ -263,10 +263,12 @@ public class Ship {
 
     @Override
     public String toString() {
+        if (this!=null){
         return id + " - " +
                 name + ", " +"\n" +
                 graphic  +
                 "number of cannons: " + numberOfCannons + " " +
-                "condition: " + condition;
+                "condition: " + condition+"\n";}
+        else return "ship unknown";
     }
 }

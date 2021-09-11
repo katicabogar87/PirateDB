@@ -22,6 +22,7 @@ public class Pirate {
         strength = (int) (Math.random()* (maxStrength-minStrength+1)+minStrength);
         health = (int) (Math.random()* (maxHealth-minHealth+1)+minHealth);
         drunkLevel = DrunkLevel.randomDrunkLevel();
+
     }
 
     public Pirate(String name, int strength, int health, DrunkLevel drunkLevel,  Ship ship) {
@@ -124,6 +125,10 @@ public class Pirate {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public Ship getShip() {
         return ship;
     }
@@ -134,12 +139,21 @@ public class Pirate {
 
     @Override
     public String toString() {
-        return id + " - " +
-                name + ", " +"\n" +
+        if (this.ship != null) {
+            return id + " - " +
+                    name + ", " + "\n" +
+                    "strength: " + strength + " " +
+                    "health: " + health + " " +
+                    "drunkLevel: " + drunkLevel + "\n" +
+                    "member of "+ship.getName()+"\'s crew" + //TODO: ship is null!!! -WHY???
+                    "\n";
+        }
+        else{ return id + " - " +
+                name + ", " + "\n" +
                 "strength: " + strength + " " +
-                "health: " + health  + " " +
-                "drunkLevel: " + drunkLevel +"\n"+
-              //  "member of "+ship.getName()+"\'s crew" + //TODO: ship is null!!! -WHY???
-                "\n";
+                "health: " + health + " " +
+                "drunkLevel: " + drunkLevel + "\n" +
+                "ship unknown"+
+                "\n";}
     }
 }

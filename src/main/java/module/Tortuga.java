@@ -10,6 +10,7 @@ public class Tortuga {
     public static int minCrew = 5;
     public static void setUpShip(){
         Ship ship = new Ship();
+
         Captain captain = new Captain();
         captain.setShip(ship);
         ship.getCrew().add(captain);        //Captain is at 0 index
@@ -17,6 +18,7 @@ public class Tortuga {
         Printer.pressKeyToContinue();
 
         int manPower = (int) (Math.random()* (maxCrew-minCrew+1)) +minCrew;
+        System.out.println(ship);
         generateCrewList(manPower, ship);
 
         BattleField.shipsInBattle.add(ship);

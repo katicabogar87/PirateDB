@@ -268,24 +268,33 @@ public class DBEngine {
 
     public boolean addShipToDB(Ship ship) {
 
-        String query = "INSERT INTO ship (id, name, graphic_id, number_of_cannons, ship_condition) VALUES (?, ?, ?, ?, ?);";
+        String query = "INSERT INTO ship (name, graphic_id, number_of_cannons, ship_condition) VALUES (?, ?, ?, ?);";
+        String sql = "INSERT INTO candidates(first_name,last_name,dob,phone,email) "
+                + "VALUES(?,?,?,?,?)";
+
 
         try {
-            PreparedStatement ps = connection.prepareStatement(query);
-            ps.setLong(1, ship.getId());
-            ps.setString(2, ship.getName());
+            PreparedStatement ps = connection.prepareStatement(query,  Statement.RETURN_GENERATED_KEYS );
+            //ps.setLong(1, ship.getId());  // AUTOINCREMENT!!!
+            ps.setString(1, ship.getName());
             int graphicID;
             if (ship.getGraphic().equals(Ship.shipGraphic1)) {
                 graphicID=1;
             }else if (ship.getGraphic().equals(Ship.shipGraphic2)){
                 graphicID=2;
             }else {graphicID = 0;}
-            ps.setInt(3, graphicID);
-            ps.setInt(4, ship.getNumberOfCannons());
-            ps.setInt(5, ship.getCondition());
+            ps.setInt(2, graphicID);
+            ps.setInt(3, ship.getNumberOfCannons());
+            ps.setInt(4, ship.getCondition());
 
 
             ps.executeUpdate();
+
+            ResultSet rs = ps.getGeneratedKeys();
+            if(rs.next())
+                ship.setId(rs.getInt(1));
+
+
             ps.close();
 
             return true;
@@ -298,19 +307,26 @@ public class DBEngine {
 
     public boolean addPirateToDB(Pirate pirate) {
 
-        String query = "INSERT INTO pirate (id, name, strength, health, drunk_level, ship_id) VALUES (?, ?, ?, ?, ?, ?);";
+        String query = "INSERT INTO pirate (name, strength, health, drunk_level, ship_id) VALUES (?, ?, ?, ?, ?);";
 
         try {
-            PreparedStatement ps = connection.prepareStatement(query);
-            ps.setLong(1, pirate.getId());
-            ps.setString(2, pirate.getName());
-            ps.setInt(3, pirate.getStrength());
-            ps.setInt(4, pirate.getHealth());
-            ps.setInt(5, pirate.getDrunkLevel().ordinal()+1);
-            ps.setLong(6, pirate.getShip().getId());
+            PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+           // ps.setLong(1, pirate.getId());
+            ps.setString(1, pirate.getName()); // AUTOINCREMENT!!!
+            ps.setInt(2, pirate.getStrength());
+            ps.setInt(3, pirate.getHealth());
+            ps.setInt(4, pirate.getDrunkLevel().ordinal()+1);
+            System.out.println(pirate.getShip());
+            System.out.println(pirate.getShip().getId());
+            ps.setLong(5, pirate.getShip().getId());
 
 
             ps.executeUpdate();
+
+            ResultSet rs = ps.getGeneratedKeys();
+            if(rs.next())
+                pirate.setId(rs.getInt(1));
+
             ps.close();
 
             return true;
