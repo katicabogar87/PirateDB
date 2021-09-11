@@ -18,7 +18,7 @@ public class Tortuga {
         Printer.pressKeyToContinue();
 
         int manPower = (int) (Math.random()* (maxCrew-minCrew+1)) +minCrew;
-        System.out.println(ship);
+
         generateCrewList(manPower, ship);
 
         BattleField.shipsInBattle.add(ship);
