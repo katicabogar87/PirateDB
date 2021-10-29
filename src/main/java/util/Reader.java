@@ -13,6 +13,7 @@ public class Reader {
         try {
             Reader.buffer(SHIPS);
             Reader.buffer(PIRATES);
+            System.out.println("Reading of txt files done.");
 
         } catch (IOException e) {
             e.printStackTrace();
